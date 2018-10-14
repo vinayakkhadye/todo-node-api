@@ -15,10 +15,10 @@ MongoClient.connect('mongodb://localhost:27017', {useNewUrlParser:true}, (err, c
     //     console.log('unable to fetch cout',err);
     // })
     userCollection.find({
-        name:'mahesh kadam'
+        name:'vinayak khadye'
     }).toArray().then((items)=>{
         items.forEach((item)=>{
-            console.log(item);
+            console.log(JSON.stringify(item,{ok:1},2) );
         })
     }).catch((err)=>{
         console.log(err);

@@ -11,7 +11,7 @@ MongoClient.connect('mongodb://localhost:27017',{useNewUrlParser:true}, (err, cl
     const todosCollection   = todoAppDB.collection('Todos');
     const usersCollection   = todoAppDB.collection('Users');
     
-    todosCollection.insertOne({text:'do something'},(err, result)=>{
+    todosCollection.insertOne({text:'walk the dog',completed:false},(err, result)=>{
         if(err){
             console.log("unable to insert todos: ",err);
             return;
