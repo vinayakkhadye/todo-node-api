@@ -20,12 +20,14 @@ app.post('/todos',(req, res)=>{
         res.send(doc);
     }).catch((e)=>{
         console.log(e);
-        res.status(404).send(e);
+        res.status(400).send(e);
     })
 });
 
 app.listen(PORT,()=>{
     console.log(`server started on port ${PORT}`);
 });
+
+module.exports={app};
 
 
