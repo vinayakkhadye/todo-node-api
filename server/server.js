@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
+const _ = require('lodash');
 
 const PORT = process.env.PORT || 3000 ;
 const {mongoose} = require('./db/mongoose');
@@ -47,7 +48,35 @@ app.get('/todos/:id',(req,res)=>{
     ).catch((err)=>{
         return res.status(404).send(err);
     });
+});
 
+app.delete('/todos/:id',(req, res)=> {
+    const id = req.params.id;
+    if(!ObjectID.isValid(id)) {
+        return res.status(404).send({error:'id is not valid'});
+    }
+
+    Todo.findByIdAndRemove(id).then((doc)=>{
+        return res.status(200).send(doc);
+    }).catch(()=>{
+        return res.status(404).send({error : 'id not found in db'});
+    })
+});
+
+app.patch('/todos/:id',(req, res)=> {
+    const id = req.params.id;
+    console.log(req.params);
+    const body = _.pick(req.body,['text','completed']);
+
+    if(!ObjectID.isValid(id)) {
+        return res.status(404).send({error:'id is not valid'});
+    }
+
+    Todo.findByIdAndRemove(id).then((doc)=>{
+        return res.status(200).send(doc);
+    }).catch(()=>{
+        return res.status(404).send({error : 'id not found in db'});
+    })
 });
 
 app.listen(PORT,()=>{
