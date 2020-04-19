@@ -80,7 +80,7 @@ app.patch('/todos/:id',(req, res)=> {
 });
 
 app.listen(PORT,()=>{
-    console.log(`server started on port ${PORT}`);
+    console.log(`todo server is started on port ${PORT}`);
 });
 
 module.exports={app};
